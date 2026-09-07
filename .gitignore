@@ -7,3 +7,4 @@ assets/firebase.json
 backup/
 forge-installer.jar.log
 assets/mods/*.jar
+_ci_backup/
