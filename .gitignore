@@ -6,3 +6,4 @@ Thumbs.db
 assets/firebase.json
 backup/
 forge-installer.jar.log
+assets/mods/*.jar
