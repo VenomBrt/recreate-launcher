@@ -1,0 +1,32 @@
+# RECREATE — STATUS DO LAUNCHER
+# Edite este arquivo no GitHub. O launcher atualiza sozinho.
+#
+# status: online | development | demo | maintenance | offline
+# allow_play: true/false
+# whitelist: true = só quem está nas listas entra
+#
+# whitelist_original = só conta Microsoft (premium)
+# whitelist_pirata   = só conta offline/pirata
+# (nick na lista errada NÃO entra)
+
+status=development
+label=Desenvolvimento
+message=O servidor ainda está em desenvolvimento. Aguarde novidades!
+allow_play=true
+
+whitelist=true
+whitelist_original=VenomBrt, zlargo1
+whitelist_pirata=
+
+# Admins da Conexa (podem apagar posts abusivos)
+admins=VenomBrt, zlargo1
+
+# Também pode usar blocos:
+# [original]
+# VenomBrt
+# zlargo1
+# [pirata]
+# AmigoOffline
+# [admins]
+# VenomBrt
+# zlargo1

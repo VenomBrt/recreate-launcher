@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recreate</title>
+  <link rel="stylesheet" href="css/splash.css">
+  <link rel="stylesheet" href="css/glitch.css">
+</head>
+<body>
+  <div class="splash-container splash-rupture" id="splash-root">
+    <svg class="splash-svg-filters" aria-hidden="true">
+      <defs>
+        <filter id="rupture-wave" x="-25%" y="-25%" width="150%" height="150%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.012 0.06" numOctaves="4" seed="42" result="noise"/>
+          <feDisplacementMap id="rupture-disp" in="SourceGraphic" in2="noise" scale="0" xChannelSelector="R" yChannelSelector="G"/>
+        </filter>
+        <filter id="rupture-heavy" x="-30%" y="-30%" width="160%" height="160%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.025 0.14" numOctaves="5" seed="9" result="noise"/>
+          <feDisplacementMap in="SourceGraphic" in2="noise" scale="28" xChannelSelector="R" yChannelSelector="G"/>
+        </filter>
+      </defs>
+    </svg>
+
+    <div class="cosmos-bg"></div>
+    <div class="warp-grid"></div>
+
+    <div class="content-layer" id="content-layer">
+      <div class="logo-container rupture-target">
+        <img src="../assets/logo.jpg" alt="Recreate" class="logo">
+      </div>
+
+      <div class="title-block rupture-target">
+        <h1 class="splash-title rupture-target" data-text="RECREATE">RECREATE</h1>
+      </div>
+
+      <div class="loading-section rupture-target">
+        <div class="progress-bar">
+          <div class="progress-fill" id="progress-fill"></div>
+        </div>
+        <p class="status-text rupture-target" id="status-text">O universo observa...</p>
+      </div>
+    </div>
+
+    <div class="corner-deco top-left"></div>
+    <div class="corner-deco bottom-right"></div>
+  </div>
+
+  <script src="js/text-rupture.js"></script>
+  <script src="js/glitch-sfx.js"></script>
+  <script src="js/splash-glitch.js"></script>
+  <script src="js/splash.js"></script>
+</body>
+</html>

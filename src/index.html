@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recreate</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/glitch.css">
+</head>
+<body>
+<div class="shell" id="app-root">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <img src="../assets/logo.jpg" alt="Recreate">
+    </div>
+
+    <nav class="sidebar-nav">
+      <button class="nav-item active" data-page="play">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        <span class="rupture-target">Jogar</span>
+      </button>
+      <button class="nav-item" data-page="skin">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg>
+        <span class="rupture-target">Skin</span>
+      </button>
+      <button class="nav-item" data-page="friends" id="nav-friends">
+        <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+        <span class="rupture-target">Amigos</span>
+        <span class="notif-badge hidden" id="nav-friends-badge">0</span>
+      </button>
+      <button class="nav-item" data-page="conexa" id="nav-conexa">
+        <svg viewBox="0 0 24 24"><path d="M12 2a3 3 0 0 1 3 3c0 1.3-.84 2.4-2 2.82V9h2a5 5 0 0 1 5 5v1.18c1.16.42 2 1.52 2 2.82a3 3 0 1 1-3-3c.35 0 .68.07 1 .18V14a3 3 0 0 0-3-3h-2v2.18c1.16.42 2 1.52 2 2.82a3 3 0 1 1-3-3c.35 0 .68.07 1 .18V11H9a3 3 0 0 0-3 3v1.18c.32-.11.65-.18 1-.18a3 3 0 1 1-1 5.82V19a5 5 0 0 1 5-5h2V9.82A3.001 3.001 0 0 1 12 2z"/></svg>
+        <span class="rupture-target">Conexa</span>
+      </button>
+      <button class="nav-item" data-page="account">
+        <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+        <span class="rupture-target">Conta</span>
+      </button>
+      <button class="nav-item" data-page="settings">
+        <svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.31.06-.63.06-.94 0-.31-.02-.63-.06-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.04.31-.06.63-.06.94s.02.63.06.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
+        <span class="rupture-target">Config</span>
+      </button>
+      <button class="nav-item" data-page="wiki">
+        <svg viewBox="0 0 24 24"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/></svg>
+        <span class="rupture-target">Wiki</span>
+      </button>
+    </nav>
+
+    <div class="sidebar-bottom">
+      <div class="server-status" id="server-status">
+        <span class="status-dot checking"></span>
+        <span class="status-label rupture-target" id="server-status-label">Verificando...</span>
+      </div>
+      <div class="level-card" id="level-card">
+        <div class="level-header">
+          <span class="level-badge no-glitch" id="level-badge">1</span>
+          <span class="level-text"><span class="rupture-target level-label-part">Nível</span> <strong id="level-num" class="rupture-target">1</strong></span>
+        </div>
+        <span class="level-playtime rupture-target" id="level-playtime">Você ainda não jogou</span>
+        <div class="level-bar"><div class="level-fill" id="level-fill"></div></div>
+        <span class="level-xp rupture-target" id="level-xp">0 / 60 min</span>
+      </div>
+      <button class="btn-logout" id="btn-quit">
+        <svg viewBox="0 0 24 24"><path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"/></svg>
+        <span class="rupture-target">Sair</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <div class="main-area">
+    <header class="titlebar">
+      <span class="page-title glitch-target rupture-target" id="page-title">Jogar</span>
+      <div class="titlebar-right">
+        <button type="button" class="titlebar-update-btn hidden" id="btn-titlebar-update">Atualize aqui</button>
+        <div class="player-chip-wrap">
+        <div class="player-chip" id="player-chip" role="button" tabindex="0" title="Status">
+          <div class="chip-avatar-wrap">
+            <img src="" alt="" class="chip-avatar" id="chip-avatar">
+            <span class="chip-avatar-letter hidden" id="chip-avatar-letter">?</span>
+            <span class="chip-status-dot available" id="chip-status-dot"></span>
+          </div>
+          <div class="chip-text">
+            <span id="chip-name" class="rupture-target">Jogador</span>
+            <span class="chip-status-label" id="chip-status-label">Disponível</span>
+          </div>
+        </div>
+        <div class="status-menu hidden" id="status-menu" role="menu">
+          <button type="button" class="status-menu-item" data-status="available" role="menuitem">
+            <span class="status-menu-icon available"></span>
+            <span class="status-menu-copy"><strong>Disponível</strong></span>
+          </button>
+          <div class="status-menu-sep"></div>
+          <button type="button" class="status-menu-item" data-status="away" role="menuitem">
+            <span class="status-menu-icon away"></span>
+            <span class="status-menu-copy"><strong>Ausente</strong></span>
+          </button>
+          <button type="button" class="status-menu-item" data-status="dnd" role="menuitem">
+            <span class="status-menu-icon dnd"></span>
+            <span class="status-menu-copy">
+              <strong>Não perturbar</strong>
+              <small>Você não receberá notificações</small>
+            </span>
+          </button>
+          <button type="button" class="status-menu-item" data-status="invisible" role="menuitem">
+            <span class="status-menu-icon invisible"></span>
+            <span class="status-menu-copy">
+              <strong>Invisível</strong>
+              <small>Você vai aparecer Offline</small>
+            </span>
+          </button>
+        </div>
+        </div>
+        <div class="titlebar-controls">
+          <button class="ctrl-btn" id="btn-minimize">─</button>
+          <button class="ctrl-btn" id="btn-maximize">□</button>
+          <button class="ctrl-btn close" id="btn-close">✕</button>
+        </div>
+      </div>
+    </header>
+
+    <div class="page-container" id="page-container">
+      <div class="tab-glitch-flash" id="tab-glitch-flash"></div>
+
+      <!-- PLAY -->
+      <section class="page active" id="page-play">
+        <div class="play-atmosphere" aria-hidden="true"></div>
+
+        <div class="play-layout">
+          <div class="play-main">
+            <div class="play-hero">
+              <div class="play-visual">
+                <div class="play-logo-glitch-wrap" id="play-logo-wrap">
+                  <img src="../assets/logo.jpg" alt="" class="play-logo" id="play-logo">
+                </div>
+                <div class="play-glow"></div>
+              </div>
+              <div class="play-info">
+                <div class="play-title-glitch-wrap" id="play-title-wrap">
+                  <h1
+                    id="play-recreate-title"
+                    class="glitch-text-cinema glitch-target rupture-target play-title-live"
+                    data-text="RECREATE"
+                    data-glitch="RECREATE"
+                  >RECREATE</h1>
+                </div>
+                <div class="play-server-badge" id="play-server-badge">
+                  <span class="status-dot"></span>
+                  <span class="rupture-target" id="play-badge-label">Servidor</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="play-status-strip">
+              <div class="play-stat">
+                <span class="play-stat-label">Conta</span>
+                <strong id="play-stat-account">—</strong>
+              </div>
+              <div class="play-stat">
+                <span class="play-stat-label">Servidor</span>
+                <strong id="play-stat-server">—</strong>
+              </div>
+              <div class="play-stat">
+                <span class="play-stat-label">Tempo</span>
+                <strong id="play-meta-time">Você ainda não jogou</strong>
+              </div>
+              <div class="play-stat">
+                <span class="play-stat-label">RAM</span>
+                <strong id="play-meta-ram">4 GB</strong>
+              </div>
+            </div>
+
+            <p class="play-status-banner hidden" id="play-status-banner"></p>
+
+            <div class="play-cta">
+              <div class="progress-section hidden" id="progress-section">
+                <div class="progress-bar progress-bar-cinema">
+                  <div class="progress-fill" id="progress-fill"></div>
+                  <div class="progress-glow" id="progress-glow"></div>
+                </div>
+                <p class="progress-text progress-text-cinema" id="progress-text">Preparando...</p>
+              </div>
+              <button class="play-btn" id="play-btn">
+                <span>▶</span> <span class="play-btn-label rupture-target">JOGAR</span>
+              </button>
+              <p class="hint rupture-target" id="hint-text"></p>
+            </div>
+
+            <div class="play-feature-row">
+              <article class="play-feature">
+                <h4>Skin</h4>
+                <p>Muda sua skin na aba Skin — importa um PNG ou puxa da Microsoft.</p>
+              </article>
+              <article class="play-feature">
+                <h4>Amigos</h4>
+                <p>Veja quem está online no servidor em tempo real.</p>
+              </article>
+              <article class="play-feature">
+                <h4>Progresso</h4>
+                <p>As horas que você joga sobem de nível e ficam salvas neste PC.</p>
+              </article>
+            </div>
+          </div>
+
+          <aside class="play-side">
+            <div class="play-player-card" id="play-player-card">
+              <img src="" alt="" class="play-player-avatar" id="play-player-avatar">
+              <div class="play-player-avatar-letter" id="play-player-letter">?</div>
+              <div class="play-player-info">
+                <strong class="rupture-target" id="play-player-name">Jogador</strong>
+                <span id="play-player-type">Sem conta</span>
+              </div>
+            </div>
+
+            <aside class="play-changelog" id="play-changelog">
+              <header class="play-changelog-head">
+                <h3 class="rupture-target">Atualizações</h3>
+                <span class="play-pill muted" id="play-changelog-version">v0.3.10</span>
+              </header>
+              <div class="play-changelog-scroll" id="play-changelog-scroll">
+                <ul class="play-changelog-list" id="play-news-list">
+                  <li class="play-changelog-loading">
+                    <div>
+                      <strong>Carregando...</strong>
+                      <p>Buscando log no GitHub.</p>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </aside>
+          </aside>
+        </div>
+      </section>
+
+      <!-- SKIN -->
+      <section class="page" id="page-skin">
+        <div class="skin-page-header">
+          <h2 class="glitch-target">Skin</h2>
+          <p class="skin-page-sub" id="skin-status">Importe um PNG 64×64 ou 64×32 · Clique para equipar</p>
+        </div>
+        <div class="skin-layout-modrinth">
+          <div class="skin-preview-panel">
+            <p class="skin-preview-name rupture-target" id="skin-username">—</p>
+            <div class="skin-viewer-stage">
+              <div class="skin-viewer-empty hidden" id="skin-viewer-empty">
+                <span class="skin-viewer-empty-icon">?</span>
+                <p>Nenhuma skin carregada</p>
+              </div>
+              <canvas id="skin-canvas" class="hidden"></canvas>
+            </div>
+            <p class="skin-drag-hint">Arraste para girar · Clique para tomar dano</p>
+            <div class="skin-preview-actions">
+              <button class="btn-skin-edit" id="btn-import-skin" type="button">
+                <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+                Importar skin
+              </button>
+              <button class="btn-skin-sync hidden" id="btn-sync-skin" type="button">
+                <svg viewBox="0 0 24 24"><path d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46C19.54 15.03 20 13.57 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74C4.46 8.97 4 10.43 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z"/></svg>
+                Sincronizar conta
+              </button>
+            </div>
+          </div>
+          <div class="skin-library-panel" id="skin-drop-zone">
+            <div class="skin-library-toolbar">
+              <h3>Minhas skins</h3>
+              <button class="btn-skin-add" id="btn-add-skin" type="button">+ Importar PNG</button>
+            </div>
+            <div class="skin-grid-modrinth" id="skin-grid"></div>
+            <div class="skin-empty hidden" id="skin-empty">
+              <p>Nenhuma skin importada ainda.</p>
+              <p class="skin-empty-hint">Arraste um arquivo .png aqui ou clique em Importar</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FRIENDS -->
+      <section class="page" id="page-friends">
+        <div class="friends-top">
+          <div class="friends-title-row">
+            <h2 class="glitch-target">Amigos</h2>
+            <p class="friends-hint" id="friends-hint">Pedidos e grupos usam o nick da Conta.</p>
+          </div>
+
+          <div class="friends-alerts" id="friends-alerts"></div>
+
+          <div class="friends-tabs" role="tablist">
+            <button type="button" class="friends-tab active" data-friends-tab="friends" role="tab">
+              Amigos
+              <span class="notif-badge hidden" id="badge-friends-msg">0</span>
+            </button>
+            <button type="button" class="friends-tab" data-friends-tab="requests" role="tab">
+              Solicitações
+              <span class="notif-badge hidden" id="badge-requests">0</span>
+            </button>
+            <button type="button" class="friends-tab" data-friends-tab="groups" role="tab">
+              Grupos
+              <span class="notif-badge hidden" id="badge-groups-msg">0</span>
+            </button>
+          </div>
+
+          <div class="friends-toolbar" id="friends-toolbar-friends">
+            <input type="text" id="friend-input" placeholder="Nickname do amigo" maxlength="16">
+            <button class="btn-primary" id="btn-add-friend">Enviar pedido</button>
+          </div>
+          <div class="friends-toolbar hidden" id="friends-toolbar-requests">
+            <input type="text" id="friend-input-req" placeholder="Enviar pedido para..." maxlength="16">
+            <button class="btn-primary" id="btn-add-friend-req">Enviar pedido</button>
+          </div>
+          <div class="friends-toolbar hidden" id="friends-toolbar-groups">
+            <button class="btn-primary" id="btn-create-group" type="button">Criar grupo</button>
+            <span class="friends-toolbar-hint">Mínimo 3 pessoas (você + 2 amigos)</span>
+          </div>
+        </div>
+
+        <div class="friends-tab-panel" data-friends-panel="friends">
+          <div class="friends-list" id="friends-list"></div>
+        </div>
+        <div class="friends-tab-panel hidden" data-friends-panel="requests">
+          <div class="friends-panel-block">
+            <h3 class="friends-section-title">Recebidas</h3>
+            <div class="friends-list" id="requests-list"></div>
+          </div>
+          <div class="friends-panel-block">
+            <h3 class="friends-section-title">Enviadas</h3>
+            <div class="friends-list" id="outgoing-list"></div>
+          </div>
+        </div>
+        <div class="friends-tab-panel hidden" data-friends-panel="groups">
+          <div class="friends-list" id="groups-list"></div>
+        </div>
+      </section>
+
+      <div class="chat-overlay hidden" id="chat-overlay" aria-hidden="true">
+        <div class="chat-panel" role="dialog" aria-labelledby="chat-friend-name">
+          <div class="chat-panel-header">
+            <div class="chat-panel-peer">
+              <img class="chat-peer-avatar" id="chat-peer-avatar" src="" alt="">
+              <div>
+                <div class="chat-friend-name" id="chat-friend-name">—</div>
+                <div class="chat-friend-sub" id="chat-friend-sub">Mensagens neste PC</div>
+              </div>
+            </div>
+            <div class="chat-panel-actions">
+              <button type="button" class="btn-secondary chat-clear-btn" id="btn-clear-chat">Limpar histórico</button>
+              <button type="button" class="chat-close-btn" id="btn-close-chat" aria-label="Fechar">×</button>
+            </div>
+          </div>
+          <div class="chat-messages" id="chat-messages"></div>
+          <form class="chat-compose" id="chat-compose">
+            <input type="text" id="chat-input" placeholder="Escreva uma mensagem..." maxlength="2000" autocomplete="off">
+            <button type="submit" class="btn-primary" id="btn-send-chat">Enviar</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="confirm-overlay hidden" id="confirm-clear-overlay" aria-hidden="true">
+        <div class="confirm-panel" role="dialog">
+          <p class="confirm-title">Apagar histórico?</p>
+          <p class="confirm-body" id="confirm-clear-body">
+            Todas as mensagens desta conversa serão apagadas só neste PC.
+          </p>
+          <div class="confirm-actions">
+            <button type="button" class="btn-secondary" id="btn-confirm-clear-cancel">Cancelar</button>
+            <button type="button" class="btn-danger" id="btn-confirm-clear-ok">Apagar</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="confirm-overlay hidden" id="create-group-overlay" aria-hidden="true">
+        <div class="confirm-panel create-group-panel" role="dialog">
+          <p class="confirm-title">Criar grupo</p>
+          <p class="confirm-body">Escolha pelo menos 2 amigos (vocês 3 no grupo). Estilo MD do Discord.</p>
+          <div class="field">
+            <label for="group-name-input">Nome do grupo (opcional)</label>
+            <input type="text" id="group-name-input" maxlength="40" placeholder="Ex: Trio da night">
+          </div>
+          <div class="group-pick-list" id="group-pick-list"></div>
+          <div class="confirm-actions">
+            <button type="button" class="btn-secondary" id="btn-create-group-cancel">Cancelar</button>
+            <button type="button" class="btn-primary" id="btn-create-group-ok">Criar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- CONEXA -->
+      <section class="page" id="page-conexa">
+        <div class="conexa-app">
+          <!-- Rail estilo Discord -->
+          <aside class="conexa-rail">
+            <div class="conexa-rail-brand">
+              <span class="conexa-rail-logo">CX</span>
+              <div>
+                <strong>Conexa</strong>
+                <small>Rede do Multiverso</small>
+              </div>
+            </div>
+
+            <nav class="conexa-rail-nav">
+              <button type="button" class="conexa-rail-item active" data-conexa-tab="global">
+                <span class="conexa-rail-ico">◈</span>
+                <span>Global</span>
+              </button>
+              <button type="button" class="conexa-rail-item" data-conexa-tab="me">
+                <span class="conexa-rail-ico">◎</span>
+                <span>Meu perfil</span>
+              </button>
+            </nav>
+
+            <div class="conexa-rail-label">Comunidades</div>
+            <div class="conexa-comm-actions">
+              <button type="button" class="conexa-chip-btn" id="btn-conexa-comm-create">Criar</button>
+              <button type="button" class="conexa-chip-btn" id="btn-conexa-comm-join">Entrar</button>
+            </div>
+            <div class="conexa-comm-list" id="conexa-comm-list">
+              <p class="conexa-people-empty">Nenhuma ainda</p>
+            </div>
+
+            <div class="conexa-rail-label">Pessoas</div>
+            <div class="conexa-people" id="conexa-people-list">
+              <p class="conexa-people-empty">Ainda ninguém postou</p>
+            </div>
+
+            <div class="conexa-rail-foot">
+              <span class="conexa-admin-pill hidden" id="conexa-admin-pill">ADM</span>
+              <button type="button" class="conexa-chip-btn" id="btn-conexa-refresh">Atualizar</button>
+            </div>
+          </aside>
+
+          <!-- Centro estilo Twitter -->
+          <div class="conexa-center">
+            <header class="conexa-topbar">
+              <button type="button" class="conexa-back hidden" id="btn-conexa-back" title="Voltar">←</button>
+              <div class="conexa-topbar-copy">
+                <h2 id="conexa-feed-title">Global</h2>
+                <p id="conexa-hint">O que todo mundo tá postando agora</p>
+              </div>
+            </header>
+
+            <!-- Hero Twitter-style da comunidade -->
+            <div class="conexa-comm-hero hidden" id="conexa-comm-hero">
+              <div class="conexa-comm-hero-banner" id="conexa-comm-hero-banner">
+                <label class="conexa-banner-edit hidden" id="btn-conexa-comm-banner" title="Trocar banner">
+                  <input type="file" id="conexa-comm-banner-input" accept="image/png,image/jpeg,image/webp" hidden>
+                  Banner
+                </label>
+              </div>
+              <div class="conexa-comm-hero-body">
+                <div class="conexa-comm-hero-top">
+                  <div>
+                    <h3 id="conexa-comm-hero-name">Comunidade</h3>
+                    <p id="conexa-comm-hero-desc"></p>
+                  </div>
+                  <button type="button" class="conexa-comm-hero-cta hidden" id="btn-conexa-comm-hero-join">Entrar</button>
+                </div>
+                <div class="conexa-comm-hero-stats">
+                  <span><strong id="conexa-comm-hero-members">0</strong> membros</span>
+                  <span id="conexa-comm-hero-privacy">Aberta</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="conexa-compose" id="conexa-compose">
+              <div class="conexa-compose-top">
+                <div class="conexa-avatar-wrap">
+                  <img src="" alt="" class="conexa-avatar" id="conexa-compose-avatar">
+                  <span class="conexa-avatar-letter" id="conexa-compose-letter">?</span>
+                </div>
+                <textarea id="conexa-compose-text" maxlength="280" rows="3" placeholder="O que tá rolando no multiverso?"></textarea>
+              </div>
+              <div class="conexa-compose-preview hidden" id="conexa-compose-preview">
+                <img src="" alt="preview" id="conexa-compose-preview-img">
+                <button type="button" class="conexa-preview-remove" id="btn-conexa-remove-img" title="Remover">✕</button>
+              </div>
+              <div class="conexa-compose-bar">
+                <div class="conexa-compose-tools">
+                  <label class="conexa-attach" title="Anexar arquivos">
+                    <input type="file" id="conexa-image-input" accept="image/png,image/jpeg,image/webp,image/gif" hidden>
+                    <svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+                    Arquivos
+                  </label>
+                  <label class="conexa-global-toggle" id="conexa-global-toggle-wrap" title="Aparece no feed Global">
+                    <input type="checkbox" id="conexa-post-global" checked>
+                    <span id="conexa-post-global-label">Global</span>
+                  </label>
+                  <span class="conexa-count" id="conexa-compose-count">0/280</span>
+                </div>
+                <button type="button" class="conexa-post-btn" id="btn-conexa-post">Postar</button>
+              </div>
+            </div>
+
+            <div class="conexa-feed" id="conexa-feed">
+              <p class="conexa-empty">Carregando a Conexa...</p>
+            </div>
+          </div>
+
+          <!-- Painel de perfil estilo Discord -->
+          <aside class="conexa-panel" id="conexa-panel">
+            <div class="conexa-panel-card">
+              <div class="conexa-profile-banner" id="conexa-profile-banner">
+                <label class="conexa-banner-edit hidden" id="btn-conexa-profile-banner" title="Trocar banner">
+                  <input type="file" id="conexa-profile-banner-input" accept="image/png,image/jpeg,image/webp" hidden>
+                  Banner
+                </label>
+              </div>
+              <div class="conexa-profile-body">
+                <div class="conexa-avatar-wrap conexa-avatar-wrap-lg">
+                  <img src="" alt="" class="conexa-avatar conexa-avatar-lg" id="conexa-profile-avatar">
+                  <span class="conexa-avatar-letter conexa-avatar-letter-lg" id="conexa-profile-letter">?</span>
+                </div>
+                <div class="conexa-profile-name-row">
+                  <strong id="conexa-profile-nick">—</strong>
+                  <span class="conexa-admin-pill hidden" id="conexa-profile-admin">ADM</span>
+                </div>
+                <p class="conexa-profile-handle" id="conexa-profile-handle">@—</p>
+                <p class="conexa-profile-bio" id="conexa-profile-bio">Sua bio aparece aqui.</p>
+                <div class="conexa-stats" id="conexa-profile-stats">
+                  <div><strong id="conexa-stat-posts">0</strong><span>posts</span></div>
+                  <div><strong id="conexa-stat-likes">0</strong><span>likes</span></div>
+                </div>
+
+                <div class="conexa-bio-edit hidden" id="conexa-bio-edit">
+                  <textarea id="conexa-bio-input" maxlength="160" rows="3" placeholder="Conta quem você é no Recreate..."></textarea>
+                  <div class="conexa-bio-actions">
+                    <button type="button" class="btn-secondary" id="btn-conexa-bio-cancel">Cancelar</button>
+                    <button type="button" class="btn-primary" id="btn-conexa-bio-save">Salvar bio</button>
+                  </div>
+                </div>
+
+                <div class="conexa-panel-actions">
+                  <button type="button" class="conexa-chip-btn hidden" id="btn-conexa-edit-bio">Editar bio</button>
+                  <button type="button" class="conexa-panel-cta" id="btn-conexa-open-profile">Ver perfil completo</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="conexa-rules" id="conexa-rules-feed">
+              <h3>Espaço saudável</h3>
+              <p>Posts no Global todo mundo vê. No perfil dá pra postar só pra quem entrar. Admins podem apagar abuso.</p>
+            </div>
+
+            <div class="conexa-comm-panel hidden" id="conexa-comm-panel">
+              <div class="conexa-comm-panel-card">
+                <h3 id="conexa-comm-panel-title">Comunidade</h3>
+                <p id="conexa-comm-panel-desc" class="conexa-comm-panel-desc"></p>
+                <p class="conexa-comm-meta" id="conexa-comm-meta"></p>
+                <p class="conexa-comm-invite hidden" id="conexa-comm-invite-wrap">
+                  Convite: <code id="conexa-comm-invite-code">————</code>
+                </p>
+                <div class="conexa-comm-panel-actions">
+                  <button type="button" class="conexa-chip-btn hidden" id="btn-conexa-add-role">+ Mod</button>
+                  <button type="button" class="btn-secondary hidden" id="btn-conexa-comm-leave">Sair</button>
+                  <button type="button" class="btn-primary hidden" id="btn-conexa-comm-join-open">Entrar</button>
+                  <button type="button" class="btn-danger hidden" id="btn-conexa-comm-delete">Deletar</button>
+                </div>
+                <div class="conexa-comm-roles">
+                  <h4>Mods</h4>
+                  <div id="conexa-role-list"></div>
+                </div>
+                <div class="conexa-comm-members">
+                  <h4>Membros</h4>
+                  <div id="conexa-member-list"></div>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ACCOUNT -->
+      <section class="page" id="page-account">
+        <h2 class="glitch-target">Conta</h2>
+        <div class="account-tabs">
+          <button class="tab active" data-type="premium" id="tab-premium">✦ Original</button>
+          <button class="tab" data-type="cracked" id="tab-cracked">◇ Pirata</button>
+        </div>
+        <div class="account-section" id="section-premium">
+          <div class="account-card" id="premium-card">
+            <div class="account-avatar" id="premium-avatar">?</div>
+            <div class="account-details">
+              <p class="account-name rupture-target" id="premium-name">Não conectado</p>
+              <p class="account-type" id="premium-status">Conta Microsoft</p>
+            </div>
+            <div class="account-actions">
+              <button class="btn-primary" id="btn-ms-login">Entrar com Microsoft</button>
+              <button class="btn-secondary hidden" id="btn-ms-logout">Sair da conta</button>
+            </div>
+          </div>
+        </div>
+        <div class="account-section hidden" id="section-cracked">
+          <div class="settings-card">
+            <div class="field">
+              <label>Nickname no jogo</label>
+              <input type="text" id="username" placeholder="SeuNick" maxlength="16" pattern="[a-zA-Z0-9_]{3,16}">
+              <p class="field-hint">3–16 caracteres: letras, números e _</p>
+            </div>
+            <p class="account-type" id="cracked-status">Modo offline — sem login Microsoft</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SETTINGS -->
+      <section class="page" id="page-settings">
+        <h2 class="glitch-target">Configurações</h2>
+
+        <div class="settings-card">
+          <h3>Desempenho</h3>
+          <div class="field field-ram">
+            <label>Memória RAM <span id="ram-value">4 GB</span></label>
+            <input type="range" id="ram" min="2" max="16" step="1" value="4">
+            <div class="ram-labels"><span>2 GB</span><span>16 GB</span></div>
+          </div>
+        </div>
+
+        <div class="settings-card">
+          <h3>Geral</h3>
+          <div class="settings-toggles">
+            <label class="settings-toggle-row">
+              <div class="settings-toggle-copy">
+                <strong>Minimizar ao jogar</strong>
+                <span>Manda o launcher pra bandeja ao clicar em JOGAR</span>
+              </div>
+              <span class="settings-switch">
+                <input type="checkbox" id="setting-tray-minimize" checked>
+                <span class="settings-switch-track" aria-hidden="true"></span>
+              </span>
+            </label>
+          </div>
+        </div>
+
+        <div class="settings-card">
+          <h3>Efeitos</h3>
+          <div class="settings-toggles">
+            <label class="settings-toggle-row">
+              <div class="settings-toggle-copy">
+                <strong>Glitch nas abas</strong>
+                <span>Animação ao trocar de página</span>
+              </div>
+              <span class="settings-switch">
+                <input type="checkbox" id="setting-tab-glitch" checked>
+                <span class="settings-switch-track" aria-hidden="true"></span>
+              </span>
+            </label>
+            <label class="settings-toggle-row">
+              <div class="settings-toggle-copy">
+                <strong>Glitch no título</strong>
+                <span>Efeito no “RECREATE” da tela Jogar</span>
+              </div>
+              <span class="settings-switch">
+                <input type="checkbox" id="setting-title-glitch" checked>
+                <span class="settings-switch-track" aria-hidden="true"></span>
+              </span>
+            </label>
+            <label class="settings-toggle-row">
+              <div class="settings-toggle-copy">
+                <strong>Sons de glitch</strong>
+                <span>Áudio nas transições e efeitos</span>
+              </div>
+              <span class="settings-switch">
+                <input type="checkbox" id="setting-glitch-sfx" checked>
+                <span class="settings-switch-track" aria-hidden="true"></span>
+              </span>
+            </label>
+          </div>
+        </div>
+
+        <div class="settings-card">
+          <h3>Java</h3>
+          <p class="settings-info" id="java-status">Verificando...</p>
+          <p class="field-hint">Minecraft 1.20.1 Forge requer Java 17. <a href="https://adoptium.net/temurin/releases/?version=17" target="_blank" rel="noopener">Baixar Java 17</a></p>
+        </div>
+
+        <div class="settings-card">
+          <h3>Versão</h3>
+          <p class="settings-info">Minecraft 1.20.1 · Forge 47.4.20</p>
+          <p class="settings-info" id="launcher-version">Launcher —</p>
+          <p class="settings-info" id="update-settings-msg"></p>
+          <button type="button" class="settings-action-btn" id="btn-check-update">Verificar atualização</button>
+        </div>
+      </section>
+
+      <!-- WIKI -->
+      <section class="page" id="page-wiki">
+        <h2 class="glitch-target">Wiki — Recreate</h2>
+        <div class="wiki-content">
+          <div class="wiki-card">
+            <h3>🌌 O Multiverso</h3>
+            <p>Bem-vindo ao Recreate, um servidor multiversal com dimensões únicas, glitches na realidade e aventuras épicas. Explore mundos paralelos, complete missões e descubra segredos escondidos entre as dimensões.</p>
+          </div>
+          <div class="wiki-card">
+            <h3>⚔️ Como Jogar</h3>
+            <p>1. Escolha sua conta (Original ou Offline)<br>2. Configure sua skin<br>3. Clique em <strong>JOGAR</strong><br>4. Na primeira vez o cliente baixa os arquivos necessários</p>
+          </div>
+          <div class="wiki-card">
+            <h3>📈 Sistema de Nível</h3>
+            <p>Quanto mais tempo você joga, maior seu nível! Seu progresso é salvo automaticamente. Continue explorando o multiverso para subir de nível.</p>
+          </div>
+          <div class="wiki-card">
+            <h3>👥 Amigos</h3>
+            <p>Adicione amigos na aba Amigos para ver se estão online no servidor em tempo real.</p>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <!-- Perfil completo Conexa (fora do page-container pra não cortar) -->
+  <div class="conexa-full-overlay hidden" id="conexa-full-overlay" aria-hidden="true">
+    <div class="conexa-full-flash" id="conexa-full-flash" aria-hidden="true"></div>
+    <div class="conexa-full-modal" role="dialog" aria-labelledby="conexa-full-nick">
+      <button type="button" class="conexa-full-close" id="btn-conexa-full-close" aria-label="Fechar">×</button>
+
+      <div class="conexa-full-banner" id="conexa-full-banner"></div>
+      <div class="conexa-full-body">
+        <div class="conexa-full-avatar-wrap">
+          <img src="" alt="" class="conexa-full-avatar" id="conexa-full-avatar">
+          <span class="conexa-full-avatar-letter" id="conexa-full-avatar-letter">?</span>
+          <span class="conexa-full-online" title="Na Conexa"></span>
+        </div>
+
+        <div class="conexa-full-identity">
+          <h2 id="conexa-full-nick" class="rupture-target">—</h2>
+          <p class="conexa-full-handle no-glitch" id="conexa-full-handle">@—</p>
+          <div class="conexa-full-badges">
+            <span class="conexa-full-badge" id="conexa-full-badge-recr">RECR</span>
+            <span class="conexa-full-badge conexa-full-badge-adm hidden" id="conexa-full-badge-adm">ADM</span>
+          </div>
+        </div>
+
+        <div class="conexa-full-section">
+          <h3>Bio</h3>
+          <p id="conexa-full-bio" class="rupture-target">—</p>
+        </div>
+
+        <div class="conexa-full-section">
+          <h3>Membro desde</h3>
+          <p id="conexa-full-since">—</p>
+        </div>
+
+        <div class="conexa-full-section">
+          <h3>Na Conexa</h3>
+          <p id="conexa-full-about-meta">—</p>
+        </div>
+
+        <div class="conexa-full-stats-row">
+          <div><strong id="conexa-full-stat-posts">0</strong><span>posts</span></div>
+          <div><strong id="conexa-full-stat-likes">0</strong><span>likes</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modais comunidades -->
+  <div class="conexa-modal-overlay hidden" id="conexa-comm-create-modal" aria-hidden="true">
+    <div class="conexa-modal" role="dialog">
+      <h3>Criar comunidade</h3>
+      <label>Nome
+        <input type="text" id="conexa-comm-create-name" maxlength="32" placeholder="Ex: Recreate Builders">
+      </label>
+      <label>Descrição
+        <textarea id="conexa-comm-create-desc" maxlength="160" rows="2" placeholder="Pra que serve esse espaço"></textarea>
+      </label>
+      <label class="conexa-modal-check">
+        <input type="checkbox" id="conexa-comm-create-invite">
+        Só com código de convite
+      </label>
+      <div class="conexa-modal-actions">
+        <button type="button" class="btn-secondary" id="btn-conexa-comm-create-cancel">Cancelar</button>
+        <button type="button" class="btn-primary" id="btn-conexa-comm-create-ok">Criar</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="conexa-modal-overlay hidden" id="conexa-comm-join-modal" aria-hidden="true">
+    <div class="conexa-modal" role="dialog">
+      <h3>Entrar com código</h3>
+      <label>Convite
+        <input type="text" id="conexa-comm-join-code" maxlength="8" placeholder="ABC123" style="text-transform:uppercase">
+      </label>
+      <div class="conexa-modal-actions">
+        <button type="button" class="btn-secondary" id="btn-conexa-comm-join-cancel">Cancelar</button>
+        <button type="button" class="btn-primary" id="btn-conexa-comm-join-ok">Entrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="js/text-rupture.js"></script>
+<script src="js/play-title-glitch.js"></script>
+<script src="js/glitch-sfx.js"></script>
+<script src="js/glitch-engine.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

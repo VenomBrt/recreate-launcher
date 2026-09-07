@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Preview — Atualizar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/main.css">
+  <style>
+    body { margin: 0; background: #08000f; }
+    .preview-shell {
+      width: 1100px;
+      height: 700px;
+      margin: 24px auto;
+      border: 1px solid rgba(123,47,247,0.35);
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      background: #08000f;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.55);
+    }
+    .preview-side {
+      width: 88px;
+      background: rgba(12,0,22,0.95);
+      border-right: 1px solid rgba(123,47,247,0.2);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 18px 0;
+      gap: 14px;
+    }
+    .preview-side span {
+      width: 42px; height: 42px;
+      border-radius: 10px;
+      background: rgba(123,47,247,0.15);
+      border: 1px solid rgba(123,47,247,0.25);
+    }
+    .preview-side span.on {
+      background: rgba(123,47,247,0.45);
+      box-shadow: 0 0 18px rgba(180,80,255,0.35);
+    }
+    .preview-main { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+    .preview-fake-play {
+      flex: 1;
+      padding: 28px 32px;
+      background:
+        radial-gradient(ellipse at 20% 0%, rgba(123,47,247,0.18), transparent 50%),
+        #08000f;
+    }
+    .preview-fake-play h1 {
+      font-family: Orbitron, monospace;
+      font-size: 2.6rem;
+      letter-spacing: 0.18em;
+      color: #fff;
+      margin: 12px 0 8px;
+    }
+    .preview-fake-play p {
+      color: #b9a4d6;
+      font-family: Rajdhani, sans-serif;
+      font-size: 1.05rem;
+      max-width: 420px;
+    }
+    .preview-note {
+      text-align: center;
+      color: #9b86b8;
+      font-family: Rajdhani, sans-serif;
+      margin-top: 12px;
+      font-size: 0.95rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="preview-shell">
+    <aside class="preview-side" aria-hidden="true">
+      <span class="on"></span><span></span><span></span><span></span><span></span>
+    </aside>
+    <div class="preview-main">
+      <header class="titlebar">
+        <span class="page-title">Jogar</span>
+        <div class="titlebar-right">
+          <div class="titlebar-controls">
+            <button class="ctrl-btn">─</button>
+            <button class="ctrl-btn">□</button>
+            <button class="ctrl-btn close">✕</button>
+          </div>
+        </div>
+      </header>
+
+      <div class="update-banner" id="update-banner" role="status">
+        <div class="update-banner-copy">
+          <strong id="update-banner-title">Nova versão 1.2.0</strong>
+          <span id="update-banner-msg">Clique em Atualizar para baixar e instalar.</span>
+        </div>
+        <button type="button" class="update-banner-btn" id="update-banner-btn">Atualizar</button>
+      </div>
+
+      <div class="preview-fake-play">
+        <h1>RECREATE</h1>
+        <p>Assim aparece a faixa de atualização em cima da tela Jogar — sem mandar Setup novo toda vez.</p>
+      </div>
+    </div>
+  </div>
+  <p class="preview-note">Preview visual · no launcher real isso só aparece quando tem versão nova no GitHub</p>
+</body>
+</html>

@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recreate</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/glitch.css">
+</head>
+<body>
+<div class="shell" id="app-root">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <img src="../assets/logo.jpg" alt="Recreate">
+    </div>
+
+    <nav class="sidebar-nav">
+      <button class="nav-item active" data-page="play">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        <span class="rupture-target">Jogar</span>
+      </button>
+      <button class="nav-item" data-page="skin">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg>
+        <span class="rupture-target">Skin</span>
+      </button>
+      <button class="nav-item" data-page="friends">
+        <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+        <span class="rupture-target">Amigos</span>
+      </button>
+      <button class="nav-item" data-page="account">
+        <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+        <span class="rupture-target">Conta</span>
+      </button>
+      <button class="nav-item" data-page="settings">
+        <svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.31.06-.63.06-.94 0-.31-.02-.63-.06-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.04.31-.06.63-.06.94s.02.63.06.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
+        <span class="rupture-target">Config</span>
+      </button>
+      <button class="nav-item" data-page="wiki">
+        <svg viewBox="0 0 24 24"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/></svg>
+        <span class="rupture-target">Wiki</span>
+      </button>
+    </nav>
+
+    <div class="sidebar-bottom">
+      <div class="server-status" id="server-status">
+        <span class="status-dot checking"></span>
+        <span class="status-label rupture-target" id="server-status-label">Verificando...</span>
+      </div>
+      <div class="level-card" id="level-card">
+        <div class="level-header">
+          <span class="level-badge no-glitch" id="level-badge">1</span>
+          <span class="level-text"><span class="rupture-target level-label-part">Nível</span> <strong id="level-num" class="rupture-target">1</strong></span>
+        </div>
+        <span class="level-playtime rupture-target" id="level-playtime">Você ainda não jogou</span>
+        <div class="level-bar"><div class="level-fill" id="level-fill"></div></div>
+        <span class="level-xp rupture-target" id="level-xp">0 / 60 min</span>
+      </div>
+      <button class="btn-logout" id="btn-quit">
+        <svg viewBox="0 0 24 24"><path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"/></svg>
+        <span class="rupture-target">Sair</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <div class="main-area">
+    <header class="titlebar">
+      <span class="page-title glitch-target rupture-target" id="page-title">Jogar</span>
+      <div class="titlebar-right">
+        <div class="player-chip" id="player-chip">
+          <img src="" alt="" class="chip-avatar" id="chip-avatar">
+          <span class="chip-avatar-letter hidden" id="chip-avatar-letter">?</span>
+          <span id="chip-name" class="rupture-target">Jogador</span>
+        </div>
+        <div class="titlebar-controls">
+          <button class="ctrl-btn" id="btn-minimize">─</button>
+          <button class="ctrl-btn" id="btn-maximize">□</button>
+          <button class="ctrl-btn close" id="btn-close">✕</button>
+        </div>
+      </div>
+    </header>
+
+    <div class="page-container" id="page-container">
+      <div class="tab-glitch-flash" id="tab-glitch-flash"></div>
+
+      <!-- PLAY -->
+      <section class="page active" id="page-play">
+        <div class="play-atmosphere" aria-hidden="true"></div>
+
+        <div class="play-layout">
+          <div class="play-main">
+            <div class="play-hero">
+              <div class="play-visual">
+                <div class="play-logo-glitch-wrap" id="play-logo-wrap">
+                  <img src="../assets/logo.jpg" alt="" class="play-logo" id="play-logo">
+                </div>
+                <div class="play-glow"></div>
+              </div>
+              <div class="play-info">
+                <div class="play-title-glitch-wrap" id="play-title-wrap">
+                  <h1
+                    id="play-recreate-title"
+                    class="glitch-text-cinema glitch-target rupture-target play-title-live"
+                    data-text="RECREATE"
+                    data-glitch="RECREATE"
+                  >RECREATE</h1>
+                </div>
+                <div class="play-server-badge" id="play-server-badge">
+                  <span class="status-dot"></span>
+                  <span class="rupture-target" id="play-badge-label">Servidor</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="play-status-strip">
+              <div class="play-stat">
+                <span class="play-stat-label">Conta</span>
+                <strong id="play-stat-account">—</strong>
+              </div>
+              <div class="play-stat">
+                <span class="play-stat-label">Servidor</span>
+                <strong id="play-stat-server">—</strong>
+              </div>
+              <div class="play-stat">
+                <span class="play-stat-label">Tempo</span>
+                <strong id="play-meta-time">Você ainda não jogou</strong>
+              </div>
+              <div class="play-stat">
+                <span class="play-stat-label">RAM</span>
+                <strong id="play-meta-ram">4 GB</strong>
+              </div>
+            </div>
+
+            <div class="play-cta">
+              <div class="progress-section hidden" id="progress-section">
+                <div class="progress-bar progress-bar-cinema">
+                  <div class="progress-fill" id="progress-fill"></div>
+                  <div class="progress-glow" id="progress-glow"></div>
+                </div>
+                <p class="progress-text progress-text-cinema" id="progress-text">Preparando...</p>
+              </div>
+              <button class="play-btn" id="play-btn">
+                <span>▶</span> <span class="play-btn-label rupture-target">JOGAR</span>
+              </button>
+              <p class="hint rupture-target" id="hint-text"></p>
+            </div>
+
+            <div class="play-feature-row">
+              <article class="play-feature">
+                <h4>Skin</h4>
+                <p>Importe PNG ou sincronize a conta Microsoft na aba Skin.</p>
+              </article>
+              <article class="play-feature">
+                <h4>Amigos</h4>
+                <p>Veja quem está online no servidor em tempo real.</p>
+              </article>
+              <article class="play-feature">
+                <h4>Progresso</h4>
+                <p>Horas jogadas e nível ficam salvos neste PC.</p>
+              </article>
+            </div>
+          </div>
+
+          <aside class="play-side">
+            <div class="play-player-card" id="play-player-card">
+              <img src="" alt="" class="play-player-avatar" id="play-player-avatar">
+              <div class="play-player-avatar-letter" id="play-player-letter">?</div>
+              <div class="play-player-info">
+                <strong class="rupture-target" id="play-player-name">Jogador</strong>
+                <span id="play-player-type">Sem conta</span>
+              </div>
+            </div>
+
+            <aside class="play-changelog" id="play-changelog">
+              <header class="play-changelog-head">
+                <h3 class="rupture-target">Atualizações</h3>
+                <span class="play-pill muted" id="play-changelog-version">v0.3.10</span>
+              </header>
+              <div class="play-changelog-scroll" id="play-changelog-scroll">
+                <ul class="play-changelog-list" id="play-news-list">
+                  <li class="play-changelog-loading">
+                    <div>
+                      <strong>Carregando...</strong>
+                      <p>Buscando log no GitHub.</p>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </aside>
+          </aside>
+        </div>
+      </section>
+
+      <!-- SKIN -->
+      <section class="page" id="page-skin">
+        <div class="skin-page-header">
+          <h2 class="glitch-target">Skin</h2>
+          <p class="skin-page-sub" id="skin-status">Importe um PNG 64×64 ou 64×32 · Clique para equipar</p>
+        </div>
+        <div class="skin-layout-modrinth">
+          <div class="skin-preview-panel">
+            <p class="skin-preview-name rupture-target" id="skin-username">—</p>
+            <div class="skin-viewer-stage">
+              <div class="skin-viewer-empty hidden" id="skin-viewer-empty">
+                <span class="skin-viewer-empty-icon">?</span>
+                <p>Nenhuma skin carregada</p>
+              </div>
+              <canvas id="skin-canvas" class="hidden"></canvas>
+            </div>
+            <p class="skin-drag-hint">Arraste para girar · Clique para tomar dano</p>
+            <div class="skin-preview-actions">
+              <button class="btn-skin-edit" id="btn-import-skin" type="button">
+                <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+                Importar skin
+              </button>
+              <button class="btn-skin-sync hidden" id="btn-sync-skin" type="button">
+                <svg viewBox="0 0 24 24"><path d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46C19.54 15.03 20 13.57 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74C4.46 8.97 4 10.43 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z"/></svg>
+                Sincronizar conta
+              </button>
+            </div>
+          </div>
+          <div class="skin-library-panel" id="skin-drop-zone">
+            <div class="skin-library-toolbar">
+              <h3>Minhas skins</h3>
+              <button class="btn-skin-add" id="btn-add-skin" type="button">+ Importar PNG</button>
+            </div>
+            <div class="skin-grid-modrinth" id="skin-grid"></div>
+            <div class="skin-empty hidden" id="skin-empty">
+              <p>Nenhuma skin importada ainda.</p>
+              <p class="skin-empty-hint">Arraste um arquivo .png aqui ou clique em Importar</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FRIENDS -->
+      <section class="page" id="page-friends">
+        <div class="friends-header">
+          <h2 class="glitch-target">Amigos</h2>
+          <div class="add-friend-row">
+            <input type="text" id="friend-input" placeholder="Nickname do amigo" maxlength="16">
+            <button class="btn-primary" id="btn-add-friend">Adicionar</button>
+          </div>
+        </div>
+        <div class="friends-list" id="friends-list"></div>
+      </section>
+
+      <!-- ACCOUNT -->
+      <section class="page" id="page-account">
+        <h2 class="glitch-target">Conta</h2>
+        <div class="account-tabs">
+          <button class="tab active" data-type="premium" id="tab-premium">✦ Original</button>
+          <button class="tab" data-type="cracked" id="tab-cracked">◇ Pirata</button>
+        </div>
+        <div class="account-section" id="section-premium">
+          <div class="account-card" id="premium-card">
+            <div class="account-avatar" id="premium-avatar">?</div>
+            <div class="account-details">
+              <p class="account-name rupture-target" id="premium-name">Não conectado</p>
+              <p class="account-type" id="premium-status">Conta Microsoft</p>
+            </div>
+            <div class="account-actions">
+              <button class="btn-primary" id="btn-ms-login">Entrar com Microsoft</button>
+              <button class="btn-secondary hidden" id="btn-ms-logout">Sair da conta</button>
+            </div>
+          </div>
+        </div>
+        <div class="account-section hidden" id="section-cracked">
+          <div class="settings-card">
+            <div class="field">
+              <label>Nickname no jogo</label>
+              <input type="text" id="username" placeholder="SeuNick" maxlength="16" pattern="[a-zA-Z0-9_]{3,16}">
+              <p class="field-hint">3–16 caracteres: letras, números e _</p>
+            </div>
+            <p class="account-type" id="cracked-status">Modo offline — sem login Microsoft</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SETTINGS -->
+      <section class="page" id="page-settings">
+        <h2 class="glitch-target">Configurações</h2>
+        <div class="settings-card">
+          <div class="field">
+            <label>Memória RAM <span id="ram-value">4 GB</span></label>
+            <input type="range" id="ram" min="2" max="16" step="1" value="4">
+            <div class="ram-labels"><span>2 GB</span><span>16 GB</span></div>
+          </div>
+        </div>
+        <div class="settings-card">
+          <h3>Java</h3>
+          <p class="settings-info" id="java-status">Verificando...</p>
+          <p class="field-hint">Minecraft 1.20.1 Forge requer Java 17. <a href="https://adoptium.net/temurin/releases/?version=17" target="_blank" rel="noopener">Baixar Java 17</a></p>
+        </div>
+        <div class="settings-card">
+          <h3>Versão</h3>
+          <p class="settings-info">Minecraft 1.20.1 · Forge 47.4.20</p>
+        </div>
+      </section>
+
+      <!-- WIKI -->
+      <section class="page" id="page-wiki">
+        <h2 class="glitch-target">Wiki — Recreate</h2>
+        <div class="wiki-content">
+          <div class="wiki-card">
+            <h3>🌌 O Multiverso</h3>
+            <p>Bem-vindo ao Recreate, um servidor multiversal com dimensões únicas, glitches na realidade e aventuras épicas. Explore mundos paralelos, complete missões e descubra segredos escondidos entre as dimensões.</p>
+          </div>
+          <div class="wiki-card">
+            <h3>⚔️ Como Jogar</h3>
+            <p>1. Escolha sua conta (Original ou Offline)<br>2. Configure sua skin<br>3. Clique em <strong>JOGAR</strong><br>4. Na primeira vez o cliente baixa os arquivos necessários</p>
+          </div>
+          <div class="wiki-card">
+            <h3>📈 Sistema de Nível</h3>
+            <p>Quanto mais tempo você joga, maior seu nível! Seu progresso é salvo automaticamente. Continue explorando o multiverso para subir de nível.</p>
+          </div>
+          <div class="wiki-card">
+            <h3>👥 Amigos</h3>
+            <p>Adicione amigos na aba Amigos para ver se estão online no servidor em tempo real.</p>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</div>
+
+<script src="js/text-rupture.js"></script>
+<script src="js/play-title-glitch.js"></script>
+<script src="js/glitch-engine.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

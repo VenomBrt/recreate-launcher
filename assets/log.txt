@@ -1,0 +1,44 @@
+# RECREATE — LOG
+
+
+v0.4.0
+-Adicionado o Sybionte, incluindo Venom, Carnificina e outros.
+-Corrigidos bugs do Recreate Aeronautics.
+-Melhorado o desempenho do servidor.
+-Adicionados itens de Rick and Morty, incluindo a arma de portal, fluidos e outros itens.
+-Corrigidos diversos bugs e problemas gerais.
+-Espadas do Yujian foi adicionado
+-Agora temos um Launcher
+
+v0.3.10
+- Corrigido o Recreate Aeronautics.
+- Corrigidos bugs de renderização.
+- Removidos alguns addons do Embeddium.
+
+v0.3.9
+- Adicionado o Recreate Aeronautics (versão Alpha, podendo conter bugs).
+- O Create foi redesenhado.
+- Adicionado as Yamatos de outros jogos>:).
+
+v0.3.7
+- Removidos Figura, Extra Fight e Figura Extra Bone (a cutcine usa a skin do Epic Fight)
+
+v0.3.6
+- Corrigido o erro ao atualizar (download extra do WaterMedia nao trava mais o pack)
+
+v0.3.5
+- Removidos Paraglider e Epic Fight Paraglider Compat (dopamine-damage)
+
+v0.3.4
+- O Recreate agora é capaz de atualizar o modpack diretamente in-game.
+- Nova entrada em Alpha ao entrar no servidor, com uma cutscene exclusiva.
+- Nova Intro durante a abertura do modpack.
+- Os Glitches agora reagem às músicas.
+- Novos Glitches adicionados.
+- 6 novas músicas adicionadas.
+- Menu totalmente refeito do zero, com um visual magnífico.
+- Loading totalmente novo.
+- Tags Dono, Viajante, Builder, Helper e ADMIN estão prontas.
+- Corrigido o bug do parkour com a animação de cansaço bugada.
+- Agora é possível pular a Intro segurando Espaço.
+- Velocidade de Download aumentado

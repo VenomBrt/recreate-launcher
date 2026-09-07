@@ -1,0 +1,162 @@
+{
+  "name": "recreate-launcher",
+  "version": "1.1.0",
+  "description": "Recreate - Launcher Multiversal Minecraft 1.20.1 Forge",
+  "main": "electron/main.js",
+  "author": "Recreate Studios",
+  "license": "MIT",
+  "scripts": {
+    "prestart": "node scripts/prepare-recreate-exe.js",
+    "start": "electron .",
+    "build": "electron-builder --win dir && node scripts/patch-built-exe.js && electron-builder --win nsis --prepackaged dist/win-unpacked",
+    "build:dir": "electron-builder --win dir && node scripts/patch-built-exe.js",
+    "build:portable": "electron-builder --win portable",
+    "build:linux": "node scripts/fetch-changelog.js && electron-builder --linux AppImage deb --x64",
+    "build:linux:appimage": "node scripts/fetch-changelog.js && electron-builder --linux AppImage --x64",
+    "build:linux:deb": "node scripts/fetch-changelog.js && electron-builder --linux deb --x64",
+    "release": "node scripts/release.js",
+    "release:linux": "node scripts/release-linux.js",
+    "shortcut": "node scripts/create-shortcut.js",
+    "icons": "node scripts/generate-icons.js",
+    "patch-icon": "node scripts/patch-electron-icon.js",
+    "fetch-log": "node scripts/fetch-changelog.js",
+    "prebuild": "node scripts/fetch-changelog.js",
+    "patch-built": "node scripts/patch-built-exe.js"
+  },
+  "build": {
+    "appId": "com.recreate.launcher",
+    "productName": "Recreate",
+    "executableName": "Recreate",
+    "copyright": "Copyright © 2026 Recreate Studios",
+    "directories": {
+      "output": "dist",
+      "buildResources": "assets"
+    },
+    "files": [
+      "electron/**/*",
+      "src/**/*",
+      "assets/**/*",
+      "!assets/mods/**"
+    ],
+    "extraResources": [
+      {
+        "from": "assets/mods",
+        "to": "mods",
+        "filter": [
+          "**/*"
+        ]
+      },
+      {
+        "from": "assets/log.txt",
+        "to": "log.txt"
+      },
+      {
+        "from": "assets/launcher.txt",
+        "to": "launcher.txt"
+      }
+    ],
+    "asar": true,
+    "afterPack": "./scripts/after-pack.js",
+    "extraMetadata": {
+      "name": "Recreate",
+      "main": "electron/main.js",
+      "author": "Recreate Studios"
+    },
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "VenomBrt",
+        "repo": "recreate-launcher",
+        "releaseType": "release"
+      }
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "assets/icon.ico",
+      "executableName": "Recreate",
+      "publisherName": "Recreate Studios",
+      "requestedExecutionLevel": "asInvoker",
+      "signAndEditExecutable": false
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "allowElevation": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Recreate",
+      "installerIcon": "assets/icon.ico",
+      "uninstallerIcon": "assets/icon.ico",
+      "installerHeaderIcon": "assets/icon.ico",
+      "installerLanguages": [
+        "pt_BR"
+      ],
+      "language": "1046",
+      "artifactName": "Recreate-Setup-${version}.${ext}",
+      "deleteAppDataOnUninstall": false,
+      "runAfterFinish": true,
+      "include": "build/installer.nsh"
+    },
+    "portable": {
+      "artifactName": "Recreate-Portable-${version}.${ext}"
+    },
+    "linux": {
+      "target": [
+        {
+          "target": "AppImage",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "deb",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "category": "Game",
+      "icon": "assets/icon.png",
+      "executableName": "Recreate",
+      "maintainer": "Recreate Studios <venombrt@users.noreply.github.com>",
+      "vendor": "Recreate Studios",
+      "synopsis": "Recreate — launcher Minecraft 1.20.1 Forge",
+      "description": "Launcher do servidor Recreate (Minecraft 1.20.1 Forge) com Conexa, skins e auto-update.",
+      "desktop": {
+        "entry": {
+          "Name": "Recreate",
+          "Comment": "Launcher Multiversal Minecraft 1.20.1 Forge",
+          "Categories": "Game;",
+          "StartupWMClass": "Recreate"
+        }
+      }
+    },
+    "appImage": {
+      "artifactName": "Recreate-${version}.AppImage"
+    },
+    "deb": {
+      "artifactName": "Recreate-Setup-${version}.${ext}",
+      "priority": "optional"
+    }
+  },
+  "dependencies": {
+    "electron-updater": "^6.3.9",
+    "minecraft-launcher-core": "3.18.2",
+    "msmc": "^5.0.5",
+    "node-fetch": "2.7.0"
+  },
+  "devDependencies": {
+    "electron": "33.2.0",
+    "electron-builder": "25.1.8",
+    "rcedit": "^4.0.1",
+    "sharp": "0.33.5"
+  }
+}
